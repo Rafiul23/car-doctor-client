@@ -1,7 +1,27 @@
-import { Link } from "react-router-dom";
-import logo from '../../../assets/icons/logo.png';
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../../assets/icons/logo.png";
 
 const Navbar = () => {
+  const navlinks = (
+    <>
+      <li>
+        <NavLink to='/'>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to='/about'>About</NavLink>
+      </li>
+      <li>
+        <NavLink to='/services'>Services</NavLink>
+      </li>
+      <li>
+        <NavLink to='/blog'>Blog</NavLink>
+      </li>
+      <li>
+        <NavLink to='/contact'>Contact</NavLink>
+      </li>
+    </>
+  );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -26,51 +46,15 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {navlinks}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost text-xl">
-        <img src={logo} alt="logo" />
+        <Link to="/" className="text-xl">
+          <img src={logo} alt="logo" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navlinks}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>
