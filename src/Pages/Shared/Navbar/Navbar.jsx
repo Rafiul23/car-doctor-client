@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import logo from '../../../assets/icons/logo.png';
+
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
@@ -42,7 +45,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to='/' className="btn btn-ghost text-xl">
+        <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
