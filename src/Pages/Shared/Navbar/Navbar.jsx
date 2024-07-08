@@ -4,20 +4,55 @@ import logo from "../../../assets/icons/logo.png";
 const Navbar = () => {
   const navlinks = (
     <>
-      <li>
-        <NavLink to='/'>Home</NavLink>
+      <li className='ml-5'>
+        <NavLink
+          className={({ isActive, isPending }) => {
+            return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
+          }}
+          to="/"
+        >
+          Home
+        </NavLink>
       </li>
-      <li>
-        <NavLink to='/about'>About</NavLink>
+      <li className='ml-5'>
+        <NavLink
+          className={({ isActive, isPending }) => {
+            return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
+          }}
+          to="/about"
+        >
+          About
+        </NavLink>
       </li>
-      <li>
-        <NavLink to='/services'>Services</NavLink>
+      <li className='ml-5'>
+        <NavLink
+          className={({ isActive, isPending }) => {
+            return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
+          }}
+          to="/services"
+        >
+          Services
+        </NavLink>
       </li>
-      <li>
-        <NavLink to='/blog'>Blog</NavLink>
+      <li className='ml-5'>
+        <NavLink
+          className={({ isActive, isPending }) => {
+            return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
+          }}
+          to="/blog"
+        >
+          Blog
+        </NavLink>
       </li>
-      <li>
-        <NavLink to='/contact'>Contact</NavLink>
+      <li className='ml-5'>
+        <NavLink
+          className={({ isActive, isPending }) => {
+            return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
+          }}
+          to="/contact"
+        >
+          Contact
+        </NavLink>
       </li>
     </>
   );
@@ -54,10 +89,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navlinks}</ul>
+        <ul className="menu-horizontal px-1">{navlinks}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <a className="btn btn-outline text-[#FF3811]">Appointment</a>
       </div>
     </div>
   );
