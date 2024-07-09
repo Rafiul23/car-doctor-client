@@ -10,21 +10,21 @@ const About = () => {
          <img
             src={person}
             className="w-3/4 h-[350px]
-             rounded-lg shadow-2xl"
+             rounded-lg"
           />
         <img
           src={parts}
           className="w-1/2 absolute h-[250px] top-1/2 left-1/3 border-8 border-white
-           rounded-lg shadow-2xl"
+           rounded-lg"
         />
          </div>
         <div className='w-1/2'>
-          <h1 className="text-[#FF3811] font-bold">About Us</h1>
-          <h1 className="py-6 text-5xl font-bold">
-          We are qualified & of experience in this field
+          <h3 className="text-[#FF3811] font-bold">About Us</h3>
+          <h1 className="py-6 text-5xl font-bold text-[#151515]">
+          We are qualified <br /> & of experience in this field
           </h1>
-          <p className="py-6 text-[#737373]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
-          <p className="py-6 text-[#737373]">the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+          <p className="pb-6 text-[#737373]">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+          <p className="pb-6 text-[#737373]">The majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
           <button className="btn bg-[#ff3811] text-white">Get More Info</button>
         </div>
       </div>
