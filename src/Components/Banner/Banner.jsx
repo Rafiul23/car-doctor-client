@@ -8,7 +8,7 @@ import Slider from "../Slider/Slider";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full h-[600px]">
       <Slider slideId='slide1' img={img_1} prev="#slide6" next="#slide2"></Slider>
       <Slider slideId='slide2' img={img_2} prev="#slide1" next="#slide3"></Slider>
       <Slider slideId='slide3' img={img_3} prev="#slide2" next="#slide4"></Slider>
