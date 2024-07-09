@@ -5,8 +5,8 @@ import person from '../../../assets/images/about_us/person.jpg';
 const About = () => {
   return (
     <div className="hero min-h-screen">
-      <div className="hero-content flex-col lg:flex-row">
-         <div className='relative w-1/2'>
+      <div className="hero-content flex-col md:flex-row">
+         <div className='relative md:w-1/2 w-full'>
          <img
             src={person}
             className="w-3/4 h-[350px]
@@ -18,7 +18,7 @@ const About = () => {
            rounded-lg"
         />
          </div>
-        <div className='w-1/2'>
+        <div className='md:w-1/2 w-full'>
           <h3 className="text-[#FF3811] font-bold">About Us</h3>
           <h1 className="py-6 text-5xl font-bold text-[#151515]">
           We are qualified <br /> & of experience in this field

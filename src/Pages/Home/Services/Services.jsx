@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
 
 
+
 const Services = () => {
 
     const [services, SetServices] = useState([]);
@@ -20,7 +21,7 @@ const Services = () => {
             <p className="text-[#737373]">The majority have suffered alteration in some form, <br /> by injected humour, or randomised words which don't look even slightly believable. </p>
             </div>
 
-            <div className="grid md:grid-cols-3 grid-cols-1 gap-6 py-4">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 py-4">
                 {
                     services.map(service => <ServiceCard
                     key={service._id}
@@ -29,6 +30,11 @@ const Services = () => {
                 }
             </div>
 
+            <div className="text-center my-4">
+                <button className="btn btn-outline text-[#FF3811]">View Services</button>
+            </div>
+
+            
         </div>
     );
 };
