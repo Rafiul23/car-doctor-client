@@ -3,8 +3,8 @@ const Slider = ({ slideId, img, prev, next }) => {
     
       <div id={slideId} className="carousel-item relative w-full">
       <img src={img} className="w-full rounded-xl" />
-      <div className="absolute top-0  w-full left-0 flex items-center bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] h-full">
-       <div className="text-white w-1/2 space-y-7 mx-12">
+      <div className="absolute top-0  w-full left-0 flex items-center bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] rounded-xl h-full">
+       <div className="text-white w-1/3 space-y-7 mx-12">
         <h2 className="text-6xl font-semibold">Affordable Price For Car Servicing</h2>
         <p>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
         <div>
