@@ -4,7 +4,7 @@ const ServiceCard = ({ service }) => {
   const { title, img, price } = service;
 
   return (
-    <div className="p-4 hover:border-2 hover:border-[#FF3811]">
+    <div className="p-4 border hover:border-2 hover:border-[#FF3811]">
       <figure>
         <img
           src={img}
