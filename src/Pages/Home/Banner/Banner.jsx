@@ -1,9 +1,9 @@
-import img_1 from "../../assets/images/banner/1.jpg";
-import img_2 from "../../assets/images/banner/2.jpg";
-import img_3 from "../../assets/images/banner/3.jpg";
-import img_4 from "../../assets/images/banner/4.jpg";
-import img_5 from "../../assets/images/banner/5.jpg";
-import img_6 from "../../assets/images/banner/6.jpg";
+import img_1 from "../../../assets/images/banner/1.jpg";
+import img_2 from "../../../assets/images/banner/2.jpg";
+import img_3 from "../../../assets/images/banner/3.jpg";
+import img_4 from "../../../assets/images/banner/4.jpg";
+import img_5 from "../../../assets/images/banner/5.jpg";
+import img_6 from "../../../assets/images/banner/6.jpg";
 import Slider from "../Slider/Slider";
 
 const Banner = () => {

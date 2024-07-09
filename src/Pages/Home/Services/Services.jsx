@@ -1,0 +1,36 @@
+import { useEffect, useState } from "react";
+import ServiceCard from "../ServiceCard/ServiceCard";
+
+
+const Services = () => {
+
+    const [services, SetServices] = useState([]);
+
+    useEffect(()=>{
+        fetch('services.json')
+        .then(res => res.json() )
+        .then(data => SetServices(data))
+    },[])
+
+    return (
+        <div className="py-10">
+            <div className="text-center space-y-2">
+            <h4 className="text-[#FF3811] text-xl font-bold">Services</h4>
+            <h3 className="text-4xl font-bold text-[#151515]">Our Service Area</h3>
+            <p className="text-[#737373]">The majority have suffered alteration in some form, <br /> by injected humour, or randomised words which don't look even slightly believable. </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-6 py-4">
+                {
+                    services.map(service => <ServiceCard
+                    key={service._id}
+                    service={service}
+                    ></ServiceCard>)
+                }
+            </div>
+
+        </div>
+    );
+};
+
+export default Services;

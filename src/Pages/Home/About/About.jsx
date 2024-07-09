@@ -1,5 +1,5 @@
-import parts from '../../assets/images/about_us/parts.jpg';
-import person from '../../assets/images/about_us/person.jpg';
+import parts from '../../../assets/images/about_us/parts.jpg';
+import person from '../../../assets/images/about_us/person.jpg';
 
 
 const About = () => {
