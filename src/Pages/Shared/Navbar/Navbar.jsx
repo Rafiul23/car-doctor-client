@@ -54,6 +54,16 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
+      <li className='ml-5'>
+        <NavLink
+          className={({ isActive, isPending }) => {
+            return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
+          }}
+          to="/login"
+        >
+          Login
+        </NavLink>
+      </li>
     </>
   );
 
