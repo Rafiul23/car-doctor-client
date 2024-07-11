@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import loginImg from "../../assets/images/login/login.svg";
-
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Login = () => {
+
+    const [hidden, setHidden] = useState(true);
+
   return (
     <div className=" min-h-screen">
       <div className="flex my-auto justify-between items-center gap-4 flex-col lg:flex-row">
@@ -25,17 +30,19 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control relative">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="password"
+                type={hidden ? 'password' : 'text'}
                 placeholder="password"
                 className="input input-bordered"
                 required
               />
-              
+              <div className="absolute top-[50px] right-5">
+                <button onClick={()=>setHidden(!hidden)}>{hidden ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</button>
+              </div>
             </div>
             <div className="form-control mt-4">
                 <p>New to here? Please <span className="text-blue-600 font-bold underline"><Link to='/signup'>Sign Up!</Link></span></p>
