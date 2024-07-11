@@ -8,6 +8,10 @@ const Login = () => {
 
     const [hidden, setHidden] = useState(true);
 
+    const handleLogin = e =>{
+        e.preventdefault();
+    }
+
   return (
     <div className=" min-h-screen">
       <div className="flex my-auto justify-between items-center gap-4 flex-col lg:flex-row">
@@ -15,7 +19,8 @@ const Login = () => {
           <img src={loginImg} alt="" />
         </div>
         <div className="card bg-base-100 md:w-1/2 w-full ">
-          <form className="card-body">
+        
+          <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
                 <h2 className="text-4xl font-bold text-[#ff3811]">Login Now!</h2>
             </div>
@@ -30,7 +35,7 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="form-control relative">
+            <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
@@ -40,10 +45,9 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
-              <div className="absolute top-[50px] right-5">
-                <button onClick={()=>setHidden(!hidden)}>{hidden ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</button>
-              </div>
+              
             </div>
+            
             <div className="form-control mt-4">
                 <p>New to here? Please <span className="text-blue-600 font-bold underline"><Link to='/signup'>Sign Up!</Link></span></p>
             </div>
@@ -51,9 +55,15 @@ const Login = () => {
               <button className="btn bg-[#ff3811] text-white">Login</button>
             </div>
           </form>
+          <div className="relative -top-[195px]">
+          <div className="absolute right-16">
+                <button onClick={()=>setHidden(!hidden)}>{hidden ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</button>
+              </div>
+          </div>
         </div>
       </div>
     </div>
+    
   );
 };
 
