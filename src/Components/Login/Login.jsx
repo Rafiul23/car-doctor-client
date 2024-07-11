@@ -56,9 +56,9 @@ const Login = () => {
             </div>
           </form>
           <div className="relative -top-[195px]">
-          <div className="absolute right-16">
+            <div className="absolute right-16">
                 <button onClick={()=>setHidden(!hidden)}>{hidden ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</button>
-              </div>
+            </div>
           </div>
         </div>
       </div>
