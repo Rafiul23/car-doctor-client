@@ -1,26 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login/login.svg";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
     const [hidden, setHidden] = useState(true);
     const {signIn} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogin = e =>{
         e.preventDefault();
 
         const form = e.target;
         const email = form.email.value;
-        const password = from.password.value;
+        const password = form.password.value;
 
         signIn(email, password)
         .then(res => {
           const user = res.user;
           console.log(user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User login successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate('/');
         })
         .catch(err => {
           console.log(err.message);
@@ -58,6 +68,7 @@ const Login = () => {
               <input
                 type={hidden ? 'password' : 'text'}
                 placeholder="password"
+                name="password"
                 className="input input-bordered"
                 required
               />

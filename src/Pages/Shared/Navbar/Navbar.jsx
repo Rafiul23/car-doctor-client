@@ -1,7 +1,31 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/icons/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+
+  const {logOut, user} = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogOut = ()=>{
+    logOut()
+    .then(res =>{
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User logged out successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate('/');
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  }
+
   const navlinks = (
     <>
       <li className='ml-5'>
@@ -55,13 +79,13 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='ml-5'>
-        <NavLink
+       <NavLink
           className={({ isActive, isPending }) => {
             return isActive ? "text-[#FF3811] font-bold underline" : isPending ? "pending" : "";
           }}
-          to="/login"
+          to="/appointment"
         >
-          Login
+          Appointment
         </NavLink>
       </li>
     </>
@@ -102,7 +126,9 @@ const Navbar = () => {
         <ul className="menu-horizontal px-1">{navlinks}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-outline text-[#FF3811]">Appointment</button>
+        {
+          user ? <button onClick={handleLogOut} className="btn btn-outline text-[#FF3811]">Log Out</button> : <Link to='/login'><button className="btn btn-outline text-[#FF3811]">Login</button></Link>
+        }
       </div>
     </div>
   );
