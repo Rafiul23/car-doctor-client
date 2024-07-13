@@ -2,14 +2,33 @@ import { Link } from "react-router-dom";
 import signUpImg from "../../assets/images/login/login.svg";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const SignUp = () => {
 
     const [hidden, setHidden] = useState(true);
 
+        
+        const {createUser} = useContext(AuthContext);
+
     const handleSignUp = e =>{
+
         e.preventdefault();
+
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = from.password.value;
+
+        createUser(email, password)
+        .then(res => {
+          const user = res.user;
+          console.log(user);
+        })
+        .catch(err => {
+          console.log(err.message);
+        })
     }
 
   return (
@@ -31,6 +50,7 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="name"
+                name="name"
                 className="input input-bordered"
                 required
               />
@@ -53,6 +73,7 @@ const SignUp = () => {
               <input
                 type={hidden ? 'password' : 'text'}
                 placeholder="password"
+                name='password'
                 className="input input-bordered"
                 required
               />
