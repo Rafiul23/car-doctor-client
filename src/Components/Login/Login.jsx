@@ -11,7 +11,7 @@ const Login = () => {
     const {signIn} = useContext(AuthContext);
 
     const handleLogin = e =>{
-        e.preventdefault();
+        e.preventDefault();
 
         const form = e.target;
         const email = form.email.value;
@@ -46,6 +46,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="email"
+                name='email'
                 className="input input-bordered"
                 required
               />
