@@ -2,14 +2,29 @@ import { Link } from "react-router-dom";
 import loginImg from "../../assets/images/login/login.svg";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
 
     const [hidden, setHidden] = useState(true);
+    const {signIn} = useContext(AuthContext);
 
     const handleLogin = e =>{
         e.preventdefault();
+
+        const form = e.target;
+        const email = form.email.value;
+        const password = from.password.value;
+
+        signIn(email, password)
+        .then(res => {
+          const user = res.user;
+          console.log(user);
+        })
+        .catch(err => {
+          console.log(err.message);
+        })
     }
 
   return (
