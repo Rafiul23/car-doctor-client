@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ServiceCard from "../../Pages/Home/ServiceCard/ServiceCard";
+import { Link } from "react-router-dom";
 
 
 
@@ -31,7 +32,9 @@ const Services = () => {
             </div>
 
             <div className="text-center my-4">
-                <button className="btn btn-outline text-[#FF3811]">View Services</button>
+                <Link to='/'>
+                <button className="btn btn-outline text-[#FF3811]">Back to Home</button>
+                </Link>
             </div>
 
             

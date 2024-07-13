@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard/ServiceCard";
+import { Link } from "react-router-dom";
 
 
 
@@ -8,7 +9,7 @@ const Services = () => {
     const [services, SetServices] = useState([]);
 
     useEffect(()=>{
-        fetch('services.json')
+        fetch('http://localhost:5000/services')
         .then(res => res.json() )
         .then(data => SetServices(data))
     },[])
@@ -31,7 +32,9 @@ const Services = () => {
             </div>
 
             <div className="text-center my-4">
+                <Link to='/services'>
                 <button className="btn btn-outline text-[#FF3811]">View Services</button>
+                </Link>
             </div>
 
             
