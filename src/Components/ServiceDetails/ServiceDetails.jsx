@@ -1,14 +1,25 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import serviceImg from "../../assets/images/checkout/checkout.png";
 import playImg from '../../assets/icons/Vector-1.png';
 import circle from '../../assets/icons/circle.png';
+import arrow from '../../assets/icons/Vector.png'
 import "./service.css";
+import { useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 const ServiceDetails = () => {
   const serviceData = useLoaderData();
 
   const { img, title, description, facility } = serviceData;
 
   console.log(serviceData);
+
+  const [services, SetServices] = useState([]);
+
+  useEffect(()=>{
+    fetch('http://localhost:5000/services')
+    .then(res => res.json() )
+    .then(data => SetServices(data))
+},[])
 
   return (
     <div>
@@ -73,7 +84,21 @@ const ServiceDetails = () => {
                 <img src={circle} className="absolute left-[46%] top-[38%]" alt="" />
               </div>
         </div>
-        <div className="cols-span-1"></div>
+        <div className="cols-span-1">
+          <div className="bg-base-200 p-5 rounded-lg ">
+            <h3 className="text-2xl font-bold">Services</h3>
+            <div className="my-2">
+            {
+              services.map(service => <Link to={`/service/${service._id}`}>
+              <div className="p-4 mb-3 hover:bg-[#ff3811] hover:text-white bg-white text-[#151515] icon flex justify-between items-center" key={service._id}>
+                  <h4 className="text-lg font-bold">{service.title}</h4>
+                  <FaArrowRight></FaArrowRight>
+              </div>
+              </Link>)
+            }
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
