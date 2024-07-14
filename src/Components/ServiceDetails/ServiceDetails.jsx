@@ -2,14 +2,14 @@ import { Link, useLoaderData } from "react-router-dom";
 import serviceImg from "../../assets/images/checkout/checkout.png";
 import playImg from '../../assets/icons/Vector-1.png';
 import circle from '../../assets/icons/circle.png';
-import arrow from '../../assets/icons/Vector.png'
+import logo from '../../assets/icons/logo.png';
 import "./service.css";
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 const ServiceDetails = () => {
   const serviceData = useLoaderData();
 
-  const { img, title, description, facility } = serviceData;
+  const { img, title, description, facility, price } = serviceData;
 
   console.log(serviceData);
 
@@ -85,12 +85,12 @@ const ServiceDetails = () => {
               </div>
         </div>
         <div className="cols-span-1">
-          <div className="bg-base-200 p-5 rounded-lg ">
+          <div className="bg-base-200 mb-5 p-6 rounded-lg ">
             <h3 className="text-2xl font-bold">Services</h3>
-            <div className="my-2">
+            <div className="my-4">
             {
               services.map(service => <Link to={`/service/${service._id}`}>
-              <div className="p-4 mb-3 hover:bg-[#ff3811] hover:text-white bg-white text-[#151515] icon flex justify-between items-center" key={service._id}>
+              <div className="p-4 mb-3 hover:bg-[#ff3811] hover:text-white bg-white text-[#151515] flex justify-between items-center" key={service._id}>
                   <h4 className="text-lg font-bold">{service.title}</h4>
                   <FaArrowRight></FaArrowRight>
               </div>
@@ -98,6 +98,22 @@ const ServiceDetails = () => {
             }
             </div>
           </div>
+
+          <div  className="bg-[#151515] text-center p-4 rounded-lg" >
+            <img src={logo} className="my-5 mx-auto" alt="" />
+            <h3 className="font-bold text-xl text-white">Need Help? We Are Here <br />
+            To Help You</h3>
+            <div className="bg-white p-5 my-4 rounded-lg text-center">
+              <h3 className="font-bold text-xl"><span className="text-[#ff3811]">Car Doctor</span> Special</h3>
+              <p className="text-[#737373] text-xl my-3">Save up to <span className="text-[#ff3911]">60% off</span></p>
+            </div>
+              <button className="inline-block px-5 py-4 rounded-lg relative -top-10 bg-[#ff3811] text-white">Get A Quote</button>
+          </div>
+
+          <h2 className="text-3xl font-bold my-3 text-[#151515]">Price: ${price}</h2>
+
+            <button className="bg-[#ff3811] text-white w-full py-3 rounded-md">Proceed Checkout</button>
+
         </div>
       </div>
     </div>

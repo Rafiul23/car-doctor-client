@@ -1,7 +1,4 @@
 .trapezoid {
     clip-path: polygon(12% 0%, 88% 0%, 100% 100%, 0% 100%);
   }
-
-.icon:hover{
-  color: white;
-}  
+ 
