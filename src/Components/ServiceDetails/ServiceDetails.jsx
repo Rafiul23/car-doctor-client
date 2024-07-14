@@ -1,5 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import serviceImg from "../../assets/images/checkout/checkout.png";
+import playImg from '../../assets/icons/Vector-1.png';
+import circle from '../../assets/icons/circle.png';
 import "./service.css";
 const ServiceDetails = () => {
   const serviceData = useLoaderData();
@@ -64,8 +66,12 @@ const ServiceDetails = () => {
                 <h2 className="text-xl font-bold text-center my-6">STEP THREE</h2>
                 <p className="text-center pb-2">It uses a dictionary <br /> of over 200 .</p>
               </div>
-              
           </div>
+              <div className="relative my-5">
+                <img src={img} alt="" className="w-full h-[400px]" />
+                <img src={playImg} className="absolute left-1/2 top-[45%]" alt="" />
+                <img src={circle} className="absolute left-[46%] top-[38%]" alt="" />
+              </div>
         </div>
         <div className="cols-span-1"></div>
       </div>
