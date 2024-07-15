@@ -1,10 +1,35 @@
 import { useLoaderData } from "react-router-dom";
 import checkOutImg from "../../assets/images/checkout/checkout.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const CheckOut = () => {
   const service = useLoaderData();
 
   const { title, price } = service;
+  const {user} = useContext(AuthContext);
+
+  const handleBookService = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const name= form.name.value;
+    const email = user?.email;
+    const date = form.date.value;
+    const dueAmount = form.dueAmount.value;
+    const phone = form.phone.value;
+    const message = form.message.value;
+
+    const order = {
+        customerName: name,
+        email,
+        date,
+        dueAmount,
+        phone,
+        message
+    }
+
+    
+  }
 
   return (
     <div>
@@ -23,9 +48,9 @@ const CheckOut = () => {
       </h2>
 
      <div className="bg-base-200 p-5 my-10 rounded-lg">
-     <form className="card-body">
-        <div className="">
-        <div className="form-control w-full">
+     <form onSubmit={handleBookService} className="card-body">
+        <div className="flex md:flex-row flex-col">
+        <div className="form-control md:w-1/2 w-full">
           <label className="label">
             <span className="label-text font-semibold">Name:</span>
           </label>
@@ -37,12 +62,55 @@ const CheckOut = () => {
             required
           />
         </div>
+        <div className="form-control ml-4 md:w-1/2 w-full">
+          <label className="label">
+            <span className="label-text font-semibold">Date:</span>
+          </label>
+          <input
+            type="date"
+            placeholder="Enter Date"
+            name="date"
+            className="input input-bordered"
+            required
+          />
+        </div>
         
         </div>
+
         <div className="flex md:flex-row flex-col">
+        
         <div className="form-control md:w-1/2 w-full">
           <label className="label">
-            <span className="label-text font-semibold">Phone</span>
+            <span className="label-text font-semibold">Email</span>
+          </label>
+          <input
+            type="email"
+            defaultValue={user?.email}
+            placeholder="Enter Your Email Address"
+            name="email"
+            className="input input-bordered"
+            required
+          />
+        </div>
+
+        <div className="form-control ml-4 md:w-1/2 w-full">
+          <label className="label">
+            <span className="label-text font-semibold">Due Amount:</span>
+          </label>
+          <input
+            type="number"
+            defaultValue={price}
+            placeholder="Enter Your Phone Number"
+            name="dueAmount"
+            className="input input-bordered"
+            required
+          />
+        </div>
+        </div>
+
+        <div className="form-control md:w-1/2 w-full">
+          <label className="label">
+            <span className="label-text font-semibold">Phone:</span>
           </label>
           <input
             type="number"
@@ -52,19 +120,7 @@ const CheckOut = () => {
             required
           />
         </div>
-        <div className="form-control ml-4 md:w-1/2 w-full">
-          <label className="label">
-            <span className="label-text font-semibold">Email</span>
-          </label>
-          <input
-            type="email"
-            placeholder="Enter Your Email Address"
-            name="email"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        </div>
+
        <div className="form-control mt-6">
        <label className="label">
             <span className="label-text font-semibold mb-2">Your Message</span>
