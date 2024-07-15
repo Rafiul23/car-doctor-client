@@ -9,7 +9,7 @@ import { FaArrowRight } from "react-icons/fa";
 const ServiceDetails = () => {
   const serviceData = useLoaderData();
 
-  const { img, title, description, facility, price } = serviceData;
+  const { img, title, description, facility, price, _id } = serviceData;
 
   console.log(serviceData);
 
@@ -23,7 +23,7 @@ const ServiceDetails = () => {
 
   return (
     <div>
-      <div className="relative">
+      <div className="relative mt-10">
         <img src={serviceImg} alt="service image" className="w-full" />
         <h2 className="font-bold absolute top-[42%] left-12 text-white text-5xl ">
           Service Details
@@ -112,7 +112,7 @@ const ServiceDetails = () => {
 
           <h2 className="text-3xl font-bold my-3 text-[#151515]">Price: ${price}</h2>
 
-           <Link to='/checkout'>
+           <Link to={`/checkout/${_id}`}>
            <button className="bg-[#ff3811] text-white font-semibold text-xl w-full py-3 rounded-md">Proceed Checkout</button>
            </Link>
 
