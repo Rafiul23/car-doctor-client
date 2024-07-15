@@ -2,20 +2,22 @@ import { useLoaderData } from "react-router-dom";
 import checkOutImg from "../../assets/images/checkout/checkout.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const CheckOut = () => {
   const service = useLoaderData();
 
-  const { title, price } = service;
+  const { title, price, service_id, img } = service;
   const {user} = useContext(AuthContext);
 
   const handleBookService = e =>{
     e.preventDefault();
+
     const form = e.target;
     const name= form.name.value;
     const email = user?.email;
     const date = form.date.value;
-    const dueAmount = form.dueAmount.value;
     const phone = form.phone.value;
     const message = form.message.value;
 
@@ -23,12 +25,27 @@ const CheckOut = () => {
         customerName: name,
         email,
         date,
-        dueAmount,
+        price,
         phone,
+        img,
+        service: title,
+        service_id,
         message
     }
 
-    
+    axios.post('http://localhost:5000/bookings', order)
+    .then(data =>{
+        if(data.data.insertedId){
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your order has been placed",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        };
+    })
+
   }
 
   return (
@@ -101,7 +118,6 @@ const CheckOut = () => {
             type="number"
             defaultValue={price}
             placeholder="Enter Your Phone Number"
-            name="dueAmount"
             className="input input-bordered"
             required
           />
