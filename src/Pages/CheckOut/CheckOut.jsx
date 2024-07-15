@@ -27,11 +27,11 @@ const CheckOut = () => {
         <div className="">
         <div className="form-control w-full">
           <label className="label">
-            <span className="label-text">Name:</span>
+            <span className="label-text font-semibold">Name:</span>
           </label>
           <input
             type="text"
-            placeholder="Enter your name"
+            placeholder="Enter Your Name"
             name="name"
             className="input input-bordered"
             required
@@ -42,28 +42,35 @@ const CheckOut = () => {
         <div className="flex md:flex-row flex-col">
         <div className="form-control md:w-1/2 w-full">
           <label className="label">
-            <span className="label-text">Phone</span>
+            <span className="label-text font-semibold">Phone</span>
           </label>
           <input
-            type="email"
-            placeholder="email"
+            type="number"
+            placeholder="Enter Your Phone Number"
+            name="phone"
             className="input input-bordered"
             required
           />
         </div>
         <div className="form-control ml-4 md:w-1/2 w-full">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span className="label-text font-semibold">Email</span>
           </label>
           <input
             type="email"
-            placeholder="email"
+            placeholder="Enter Your Email Address"
+            name="email"
             className="input input-bordered"
             required
           />
         </div>
         </div>
-       
+       <div className="form-control mt-6">
+       <label className="label">
+            <span className="label-text font-semibold mb-2">Your Message</span>
+          </label>
+       <textarea name="message" className="input-bordered p-4" id="message" placeholder="Type Your Message Here..."  cols="30" rows="10"></textarea>
+       </div>
         <div className="form-control mt-6">
           <button className="btn bg-[#ff3811] text-white">Order Confirm</button>
         </div>
