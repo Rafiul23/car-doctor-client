@@ -112,7 +112,9 @@ const ServiceDetails = () => {
 
           <h2 className="text-3xl font-bold my-3 text-[#151515]">Price: ${price}</h2>
 
-            <button className="bg-[#ff3811] text-white w-full py-3 rounded-md">Proceed Checkout</button>
+           <Link to='/checkout'>
+           <button className="bg-[#ff3811] text-white font-semibold text-xl w-full py-3 rounded-md">Proceed Checkout</button>
+           </Link>
 
         </div>
       </div>
