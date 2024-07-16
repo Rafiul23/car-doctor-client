@@ -2,17 +2,43 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import bookingImg from "../../assets/images/checkout/checkout.png";
+import Swal from "sweetalert2";
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const email = user?.email;
-  const url = `http://localhost:5000/bookings?email=${email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`
 
   axios.get(url).then((data) => {
     setBookings(data.data);
   });
+
+  const handleDeleteBooking = (_id) =>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/booking/${_id}`)
+       .then(data=>{
+        if(data.data.deletedCount > 0){
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        };
+       })
+      }
+    });
+   
+  }
 
   return (
     <div>
@@ -44,7 +70,7 @@ const Bookings = () => {
             {
               bookings.map(booking =>  <tr key={booking._id}>
                 <th>
-                  <button className="btn btn-circle btn-outline">
+                  <button onClick={()=> handleDeleteBooking(booking._id)} className="btn btn-circle btn-outline">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
