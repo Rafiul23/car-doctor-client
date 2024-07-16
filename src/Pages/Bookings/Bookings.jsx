@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import bookingImg from "../../assets/images/checkout/checkout.png";
@@ -8,13 +8,15 @@ const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-  axios.get(url).then((data) => {
-    setBookings(data.data);
-  });
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setBookings(data));
+  }, [url]);
 
-  const handleDeleteBooking = (_id) =>{
+  const handleDeleteBooking = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -22,23 +24,48 @@ const Bookings = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/booking/${_id}`)
-       .then(data=>{
-        if(data.data.deletedCount > 0){
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your booking has been deleted.",
-            icon: "success"
-          });
-        };
-       })
+        axios.delete(`http://localhost:5000/booking/${_id}`).then((data) => {
+          if (data.data.deletedCount > 0) {
+            const remaining = bookings.filter(booking => booking._id !== _id);
+             setBookings([...remaining]);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your booking has been deleted.",
+              icon: "success",
+            });
+          }
+        });
       }
     });
-   
-  }
+  };
+
+  const handleUpdateStatus = (_id) => {
+    axios
+      .patch(`http://localhost:5000/booking/${_id}`, {
+        status: "confirmed",
+      })
+      .then((data) => {
+        if (data.data.modifiedCount > 0) {
+          const remaining = bookings.filter((booking) => booking._id !== _id);
+          const updatedBooking = bookings.find(
+            (booking) => booking._id === _id
+          );
+          updatedBooking.status = "confirmed";
+          const newBookings = [...remaining, updatedBooking];
+          setBookings(newBookings);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Booking has been confirmed!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <div>
@@ -49,15 +76,17 @@ const Bookings = () => {
         </h2>
       </div>
 
+      <div className="my-10">
+        <h2 className="text-4xl text-[#ff3811] font-bold text-center">My Bookings: {bookings.length}</h2>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
             <tr>
               <th>
-                <label>
-                  Delete Booking
-                </label>
+                <label>Delete Booking</label>
               </th>
               <th>Customer</th>
               <th>Service Name</th>
@@ -67,10 +96,13 @@ const Bookings = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              bookings.map(booking =>  <tr key={booking._id}>
+            {bookings.map((booking) => (
+              <tr key={booking._id}>
                 <th>
-                  <button onClick={()=> handleDeleteBooking(booking._id)} className="btn btn-circle btn-outline">
+                  <button
+                    onClick={() => handleDeleteBooking(booking._id)}
+                    className="btn btn-circle btn-outline"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -98,23 +130,32 @@ const Bookings = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">Name: {booking.customerName}</div>
-                      <div className="text-sm opacity-50">Phone: {booking.phone}</div>
+                      <div className="font-bold">
+                        Name: {booking.customerName}
+                      </div>
+                      <div className="text-sm opacity-50">
+                        Phone: {booking.phone}
+                      </div>
                     </div>
                   </div>
                 </td>
-                <td>
-                  {booking.service}
-                  
-                </td>
+                <td>{booking.service}</td>
                 <td>$ {booking.price}</td>
                 <td>{booking.date}</td>
-                <th>
-                  <button className="btn bg-[#ff3811] text-white btn-md">Pending</button>
-                </th>
-              </tr>)
-            }
-           
+                <td>
+                  {booking.status === "confirmed" ? (
+                    <span className="font-bold text-blue-600">Confirmed</span>
+                  ) : (
+                    <button
+                      onClick={() => handleUpdateStatus(booking._id)}
+                      className="btn bg-[#ff3811] text-white btn-md"
+                    >
+                      Pending
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
