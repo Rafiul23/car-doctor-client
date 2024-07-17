@@ -11,10 +11,10 @@ const Bookings = () => {
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setBookings(data));
-  }, [url]);
+    axios.get(url).then((data) => {
+      setBookings(data.data);
+    });
+  }, [user, url]);
 
   const handleDeleteBooking = (_id) => {
     Swal.fire({
@@ -29,8 +29,8 @@ const Bookings = () => {
       if (result.isConfirmed) {
         axios.delete(`http://localhost:5000/booking/${_id}`).then((data) => {
           if (data.data.deletedCount > 0) {
-            const remaining = bookings.filter(booking => booking._id !== _id);
-             setBookings([...remaining]);
+            const remaining = bookings.filter((booking) => booking._id !== _id);
+            setBookings([...remaining]);
             Swal.fire({
               title: "Deleted!",
               text: "Your booking has been deleted.",
@@ -77,10 +77,12 @@ const Bookings = () => {
       </div>
 
       <div className="my-10">
-        <h2 className="text-4xl text-[#ff3811] font-bold text-center">My Bookings: {bookings.length}</h2>
+        <h2 className="text-4xl text-[#ff3811] font-bold text-center">
+          My Bookings: {bookings.length}
+        </h2>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mb-6">
         <table className="table">
           {/* head */}
           <thead>
