@@ -31,16 +31,17 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-       
+
         const userInfo = { email };
-        axios.post('http://localhost:5000/jwt', userInfo, {
-          withCredentials: true
-        })
-        .then(data =>{
-          if(data.data.success){
-             navigate(location?.state ? location?.state : "/");
-          };
-        })
+        axios
+          .post("http://localhost:5000/jwt", userInfo, {
+            withCredentials: true,
+          })
+          .then((data) => {
+            if (data.data.success) {
+              navigate(location?.state ? location?.state : "/");
+            }
+          });
       })
       .catch((err) => {
         console.log(err.message);
