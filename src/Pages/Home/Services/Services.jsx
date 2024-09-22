@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Services = () => {
 
     const [services, SetServices] = useState([]);
+    const [asc, setAsc] = useState(true);
 
     useEffect(()=>{
         fetch('http://localhost:5000/services')
@@ -20,6 +21,7 @@ const Services = () => {
             <h4 className="text-[#FF3811] text-xl font-bold">Services</h4>
             <h3 className="text-4xl font-bold text-[#151515]">Our Service Area</h3>
             <p className="text-[#737373]">The majority have suffered alteration in some form, <br /> by injected humour, or randomised words which don't look even slightly believable. </p>
+            <button className="btn btn-secondary" onClick={()=> setAsc(!asc)}>{asc ? 'Price: High to Low' : 'Price: Low to High'}</button>
             </div>
 
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 py-4">

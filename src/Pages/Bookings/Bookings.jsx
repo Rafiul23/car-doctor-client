@@ -11,11 +11,13 @@ const Bookings = () => {
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   useEffect(() => {
-    axios.get(url, {
-      withCredentials: true
-    }).then((data) => {
-      setBookings(data.data);
-    });
+    axios
+      .get(url, {
+        withCredentials: true,
+      })
+      .then((data) => {
+        setBookings(data.data);
+      });
   }, [user, url]);
 
   const handleDeleteBooking = (_id) => {
